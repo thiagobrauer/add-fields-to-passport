@@ -26,5 +26,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
+
+        Auth::provider('eloquent', function ($app, array $config) {
+            return new \App\Extensions\EloquentUserProvider($app['hash'], $config['model']);
+        });
     }
 }

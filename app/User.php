@@ -37,4 +37,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function findForPassport($username, $customField)
+    {
+        // here we can use the custom field to retrieve the user
+        return $this->where('email', $username)->where('field', $customField)->first();
+    }
 }
